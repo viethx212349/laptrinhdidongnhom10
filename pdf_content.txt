@@ -1,0 +1,255 @@
+I. TỔNG QUAN DỰ ÁN 
+1. Tên đề tài 
+●​ Hệ thống Quản lý và Đào tạo Thực tập sinh (InternFlow) - Phân hệ 
+Desktop dành cho Quản lý. 
+●​ Ứng dụng Quản lý Thực tập sinh. 
+2. Miêu tả 
+Ứng dụng Desktop (ReactJS kết hợp Electron) là phân hệ quản trị dành 
+riêng cho Mentor và HR, giúp số hóa quy trình đào tạo thực tập sinh nội 
+bộ. Thay vì hướng dẫn thủ công mỗi ngày, người quản lý sử dụng hệ 
+thống để thiết lập lộ trình học việc, giao task, theo dõi tiến độ và chấm 
+điểm trực tiếp trên máy tính. Giải pháp này giúp tiết kiệm tối đa thời gian 
+cho Mentor, đồng thời cung cấp dữ liệu trực quan để công ty đánh giá 
+và chọn lọc nhân sự tài năng. 
+3. Xác định mục tiêu 
+●​ Mục tiêu nghiệp vụ: 
+●​ Tiết kiệm thời gian và công sức cho Mentor/HR trong việc 
+hướng dẫn và theo dõi số lượng lớn thực tập sinh. 
+●​ Chuẩn hóa lộ trình đào tạo nội bộ. 
+●​ Cung cấp dữ liệu trực quan (báo cáo, tiến độ) để đánh giá 
+chính xác năng lực thực tập sinh vào cuối kỳ, làm cơ sở giữ 
+lại nhân sự tài năng. 
+●​ Mục tiêu kỹ thuật (cho môn học): 
+●​ Áp dụng thành công ReactJS kết hợp Electron để đóng gói 
+thành một ứng dụng Windows hoàn chỉnh. 
+●​ Xây dựng luồng giao tiếp dữ liệu ổn định với 
+Backend/Database dùng chung. 
+ 
+ 
+
+ 
+II. TÁC NHÂN (ACTORS) VÀ QUYỀN HẠN 
+Hệ thống được thiết kế với hướng tiếp cận MVP (Minimum Viable 
+Product), tập trung tối ưu hóa trải nghiệm quản lý. Do đó, trên phân hệ 
+Desktop (Windows App), hệ thống chỉ tập trung phục vụ một tác nhân 
+duy nhất là Mentor. 
+(Tài khoản người dùng trong hệ thống sẽ được khởi tạo sẵn từ cơ sở dữ 
+liệu). 
+1. Tác nhân: Mentor (Người hướng dẫn trực tiếp) 
+●​ Mô tả: Là nhân sự cấp trên hoặc chuyên viên tại doanh nghiệp, 
+chịu trách nhiệm trực tiếp dìu dắt, giao việc và đánh giá một nhóm 
+thực tập sinh cụ thể. Đây là người dùng chính tương tác với ứng 
+dụng Desktop. 
+●​ Mục đích sử dụng hệ thống: * Quản lý danh sách và hồ sơ thực 
+tập sinh thuộc quyền phụ trách. 
+○​ Thiết lập lộ trình đào tạo, phân công công việc (task) và đặt 
+thời hạn (deadline). 
+○​ Theo dõi tiến độ công việc hàng ngày của thực tập sinh. 
+○​ Xem xét, duyệt báo cáo và đánh giá hiệu suất (chấm 
+điểm/KPI) vào cuối kỳ thực tập. 
+●​ Quyền hạn cốt lõi: 
+○​ Toàn quyền thao tác (Xem, Thêm, Sửa, Xóa) đối với các dữ 
+liệu liên quan đến Task và Lộ trình đào tạo của thực tập sinh 
+mình quản lý. 
+○​ Quyền Xem và Đánh giá (Approve/Reject) đối với các báo 
+cáo do thực tập sinh gửi lên từ Mobile App. 
+ 
+ 
+ 
+ 
+
+ 
+III. DANH SÁCH YÊU CẦU CHỨC NĂNG 
+(FUNCTIONAL REQUIREMENTS) 
+(Mức độ tổng quan: Định nghĩa danh sách các chức năng hệ thống cung 
+cấp cho tác nhân Mentor) 
+1. Epic 1: Quản lý Hồ sơ Thực tập sinh (Intern Information 
+Management) 
+●​ UC1.1 - Xem danh sách Thực tập sinh: Hiển thị danh sách tổng 
+hợp tất cả các thực tập sinh mà Mentor đang trực tiếp phụ trách 
+(gồm Tên, Vị trí thực tập, Trạng thái). 
+●​ UC1.2 - Xem chi tiết hồ sơ: Xem các thông tin chi tiết của một 
+thực tập sinh (Thông tin liên hệ, Trường/Ngành học, Định hướng, 
+CV đính kèm). 
+2. Epic 2: Quản lý Giao việc (Task Management) - Phân hệ 
+cốt lõi 
+●​ UC2.1 - Tạo và Giao task: Cung cấp biểu mẫu để Mentor tạo 
+công việc mới (Nhập tiêu đề, mô tả, đính kèm file hướng dẫn, đặt 
+Deadline và gán cho một hoặc nhiều thực tập sinh). 
+●​ UC2.2 - Theo dõi bảng công việc (Kanban Board): Hiển thị trực 
+quan tiến độ của tất cả các task theo các cột trạng thái (Ví dụ: To 
+Do, In Progress, In Review, Done). 
+●​ UC2.3 - Chỉnh sửa / Hủy task: Cho phép Mentor cập nhật lại nội 
+dung, gia hạn deadline hoặc xóa/hủy bỏ task nếu có sự thay đổi 
+về kế hoạch. 
+3. Epic 3: Xử lý Báo cáo và Tương tác (Report & 
+Interaction) 
+●​ UC3.1 - Xem báo cáo từ Thực tập sinh: Nhận và hiển thị nội 
+dung báo cáo hoặc link kết quả công việc mà TTS nộp lên từ 
+Mobile App. 
+
+●​ UC3.2 - Đánh giá và Phản hồi task (Review & Feedback): 
+Mentor có thể thao tác Duyệt (Approve - chuyển trạng thái task 
+sang Done) hoặc Yêu cầu làm lại (Reject - đẩy lại trạng thái In 
+Progress) kèm theo bình luận/nhận xét trực tiếp vào task đó. 
+4. Epic 4: Đánh giá Tổng kết Cuối kỳ (Final Evaluation) 
+●​ UC4.1 - Xem Thống kê hiệu suất: Tự động tổng hợp và hiển thị 
+dữ liệu (biểu đồ) về tỷ lệ hoàn thành task, tỷ lệ nộp muộn/đúng 
+hạn của từng cá nhân. 
+●​ UC4.2 - Ghi nhận xét đánh giá tổng kết: Màn hình để Mentor 
+nhập nhận xét tổng quan cuối kỳ, chấm điểm chuyên môn, thái độ 
+và chốt kết quả (Pass/Fail) cho thực tập sinh. 
+IV. Sơ đồ Use Case tổng quát 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+V. YÊU CẦU PHI CHỨC NĂNG 
+(NON-FUNCTIONAL REQUIREMENTS) 
+1. Yêu cầu về Công nghệ & Môi trường chạy (Environment) 
+●​ Nền tảng: Ứng dụng Desktop chạy ổn định trên hệ điều hành 
+Windows 10 và Windows 11. 
+●​ Công nghệ lõi: Sử dụng ElectronJS để đóng gói ứng dụng và 
+ReactJS (JavaScript) để xây dựng giao diện người dùng (UI), giúp 
+tối ưu thời gian phát triển. 
+●​ Độ phân giải: Giao diện được thiết kế responsive (thích ứng) với 
+các độ phân giải màn hình máy tính phổ biến (tối thiểu từ 
+1366x768 trở lên). 
+2. Yêu cầu về Hiệu năng (Performance) 
+●​ Thời gian phản hồi: Các thao tác cơ bản (thêm task, chuyển 
+trạng thái Kanban) phải phản hồi trên giao diện ngay lập tức (dưới 
+1 giây). Các thao tác gọi dữ liệu từ server (tải danh sách thực tập 
+sinh) không vượt quá 3 giây. 
+●​ Tiêu thụ tài nguyên: Ứng dụng Electron cần được tối ưu để 
+không chiếm dụng quá nhiều RAM (mục tiêu dưới 300MB khi chạy 
+ngầm) để tránh làm giật lag máy tính của Mentor. 
+3. Yêu cầu về Bảo mật (Security) 
+●​ Mọi giao tiếp dữ liệu giữa Desktop App và Backend Server đều 
+phải thông qua giao thức bảo mật (ví dụ: xác thực bằng chuỗi 
+Token/JWT khi gọi API). 
+ 
+VI. KIẾN TRÚC HỆ THỐNG (SYSTEM ARCHITECTURE) 
+Hệ thống InternFlow được thiết kế theo mô hình Client - Server, tập 
+trung vào việc đồng bộ dữ liệu theo thời gian thực (hoặc gần thời gian 
+thực) giữa các nền tảng khác nhau. 
+
+1. Mô hình các luồng giao tiếp: 
+●​ Client 1 (Windows App): Xây dựng bằng Electron + ReactJS. 
+Đây là cổng giao tiếp dành cho Mentor để thực hiện các nghiệp vụ 
+quản lý (Tạo task, Đánh giá). 
+●​ Client 2 (Mobile App): Xây dựng bằng React Native. Đây là cổng 
+giao tiếp dành cho Thực tập sinh (Nhận task, Báo cáo). 
+●​ Backend API (Server): Xử lý toàn bộ logic nghiệp vụ (Business 
+Logic). Nhận yêu cầu từ cả Desktop và Mobile, xử lý và trả về kết 
+quả dưới dạng JSON. 
+●​ Cơ sở dữ liệu (Database): Cả Windows App và Mobile App đều 
+KHÔNG lưu trữ dữ liệu cục bộ mà sẽ gọi chung về một Database 
+trung tâm. Điều này đảm bảo khi Mentor tạo một task trên máy 
+tính, thực tập sinh sẽ ngay lập tức nhận được trên điện thoại. 
+2. Sơ đồ Kiến trúc Tổng quan: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+VII. THIẾT KẾ KIẾN TRÚC & ÁP DỤNG DESIGN 
+PATTERN 
+1. Thiết kế kiến trúc tổng thể 
+Hệ thống Quản lý và Đào tạo Thực tập sinh (IMS) được thiết kế dựa trên 
+Kiến trúc phân lớp (Layered Architecture), áp dụng các nguyên lý 
+của Domain-Driven Design (DDD). Việc lựa chọn kiến trúc 4 lớp nhằm 
+đảm bảo tính phân tách trách nhiệm (Separation of Concerns), giúp mã 
+nguồn dễ dàng bảo trì, mở rộng và hỗ trợ làm việc nhóm hiệu quả 
+(Front-end và Back-end có thể phát triển độc lập dựa trên các interface 
+đã thống nhất). 
+Hệ thống được chia thành 4 lớp (Module) chính yếu: 
+●​ Lớp Presentation (Giao diện người dùng): * Nhiệm vụ: Chịu 
+trách nhiệm tương tác trực tiếp với người dùng (Mentor, HR, 
+Intern). Lớp này tiếp nhận các sự kiện (click, input) từ giao diện 
+ứng dụng Desktop, gửi yêu cầu xuống lớp Application và hiển thị 
+kết quả trả về. 
+○​ Đặc điểm: Chỉ chứa logic về UI/UX (sử dụng 
+TypeScript/Electron), hoàn toàn không chứa logic nghiệp vụ 
+cốt lõi. 
+●​ Lớp Application (Ứng dụng/Điều phối): 
+○​ Nhiệm vụ: Hoạt động như một bộ điều phối (Orchestrator). 
+Nơi đây định nghĩa các Use Case của phần mềm (ví dụ: 
+AssignTaskUseCase, ReviewInternUseCase). 
+○​ Đặc điểm: Nhận yêu cầu từ Presentation, gọi các thực thể ở 
+lớp Domain để thực thi nghiệp vụ, và yêu cầu lớp 
+Infrastructure lưu trữ trạng thái. Lớp này không trực tiếp truy 
+xuất cơ sở dữ liệu. 
+●​ Lớp Domain (Nghiệp vụ cốt lõi): 
+○​ Nhiệm vụ: Là trung tâm của hệ thống, chứa toàn bộ quy tắc 
+nghiệp vụ (Business Rules) và các Thực thể (Entities) như 
+Intern, Task, Evaluation, Roadmap. 
+○​ Đặc điểm: Độc lập hoàn toàn. Lớp này không phụ thuộc vào 
+bất kỳ framework giao diện hay công nghệ cơ sở dữ liệu 
+
+nào, đảm bảo tính đóng gói (Encapsulation) cao nhất cho 
+logic của phần mềm. 
+●​ Lớp Infrastructure (Cơ sở hạ tầng): 
+○​ Nhiệm vụ: Xử lý các giao tiếp với thế giới bên ngoài hệ 
+thống. Trong dự án IMS, đây là nơi triển khai các truy vấn 
+SQL xuống cơ sở dữ liệu MySQL, gọi API bên ngoài, hoặc 
+các dịch vụ ghi log (Logging). 
+○​ Đặc điểm: Cung cấp các implementation cụ thể cho các 
+interface đã được định nghĩa ở lớp Application và Domain. 
+2. Áp dụng Mẫu thiết kế (Design Pattern) 
+Để giải quyết các bài toán đặc thù trong quá trình thiết kế và tối ưu hóa 
+hiệu năng, nhóm đã thống nhất áp dụng các Design Pattern sau vào hệ 
+thống: 
+2.1. Singleton Pattern 
+●​ Vị trí áp dụng: Lớp Infrastructure (Cụ thể: Quản lý kết nối cơ sở 
+dữ liệu - Database Connection). 
+●​ Mục đích và Giải pháp: Trong quá trình vận hành, ứng dụng 
+Desktop cần liên tục truy xuất dữ liệu từ MySQL. Việc khởi tạo một 
+kết nối (connection) mới cho mỗi truy vấn sẽ gây lãng phí tài 
+nguyên bộ nhớ và có nguy cơ dẫn đến tràn kết nối (Connection 
+Timeout/Overload). Singleton Pattern được áp dụng để đảm bảo 
+toàn bộ vòng đời của ứng dụng chỉ tồn tại duy nhất một phiên bản 
+(instance) của lớp DatabaseConnection, giúp quản lý luồng dữ 
+liệu tập trung và tối ưu hiệu năng máy chủ. 
+2.2. Repository Pattern 
+●​ Vị trí áp dụng: Lớp Infrastructure giao tiếp với lớp Application (Ví 
+dụ: InternRepository, TaskRepository). 
+●​ Mục đích và Giải pháp: Nhằm tách biệt hoàn toàn logic nghiệp vụ 
+(Application Layer) khỏi chi tiết truy xuất dữ liệu (Data Access 
+Logic). Lớp Application chỉ cần gọi các phương thức như 
+findInternById() hay saveTask() thông qua interface của 
+Repository mà không cần quan tâm đến các câu lệnh SQL phức 
+tạp phía dưới. Mẫu thiết kế này giúp mã nguồn dễ dàng thực hiện 
+
+Unit Test (bằng cách mock dữ liệu) và linh hoạt nếu sau này dự án 
+muốn thay đổi hệ quản trị cơ sở dữ liệu. 
+2.3. Observer Pattern 
+●​ Vị trí áp dụng: Tính năng cập nhật trạng thái và Thông báo 
+(Notification/Real-time update). 
+●​ Mục đích và Giải pháp: Khi một sự kiện quan trọng xảy ra (ví dụ: 
+Mentor vừa cập nhật trạng thái "Approved" cho một Task), nhiều 
+thành phần khác trong hệ thống cần được biết (cập nhật lại 
+Dashboard, gửi thông báo cho thực tập sinh). Thay vì gọi trực tiếp 
+từng hàm (gây ra tình trạng Tight-coupling - ràng buộc chặt), nhóm 
+sử dụng Observer Pattern. Trong đó, Task đóng vai trò là Subject 
+phát ra sự kiện, và các module như NotificationService hay 
+DashboardUI đóng vai trò là các Observers lắng nghe. Điều này 
+giúp hệ thống dễ dàng mở rộng thêm các tính năng phản hồi sau 
+này mà không cần sửa đổi mã nguồn gốc của quy trình quản lý 
+Task. 
+ 
+
